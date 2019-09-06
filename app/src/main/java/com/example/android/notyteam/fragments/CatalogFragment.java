@@ -95,6 +95,7 @@ public class CatalogFragment extends Fragment {
                 .baseUrl(WebApi.SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         WebApi webApi = retrofit.create(WebApi.class);
         if (clickedItemId == 0) {
             Log.v(TAG, "catalog fragment");
