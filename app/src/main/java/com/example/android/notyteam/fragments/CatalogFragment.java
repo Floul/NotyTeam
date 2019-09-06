@@ -98,7 +98,6 @@ public class CatalogFragment extends Fragment {
 
         WebApi webApi = retrofit.create(WebApi.class);
         if (clickedItemId == 0) {
-            Log.v(TAG, "catalog fragment");
             Call<CatalogData> categoriesCall = webApi.getCategoriesList();
             categoriesCall.enqueue(new Callback<CatalogData>() {
                 @Override
