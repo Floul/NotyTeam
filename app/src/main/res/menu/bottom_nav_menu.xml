@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/wish_list"
+        android:icon="@drawable/ic_favorite_white_24dp"
+        android:title="@string/wish_list_label"
+        />
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/ic_notifications_grey_24dp"
+        android:title="@string/notification_label" />
+    <item
+        android:id="@+id/dialogs"
+        android:icon="@drawable/ic_forum_grey_24dp"
+        android:title="@string/chats_label" />
+    <item
+        android:id="@+id/payments"
+        android:icon="@drawable/ic_payment_grey_24dp"
+        android:title="@string/payments_label" />
+    <item
+        android:id="@+id/catalog"
+        android:icon="@drawable/ic_catalog_grey_24dp"
+        android:title="@string/catalog_label" />
+</menu>

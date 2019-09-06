@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">NotyTeam</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="wish_list_label">Желания</string>
+    <string name="notification_label">Уведомления</string>
+    <string name="chats_label">Диалоги</string>
+    <string name="payments_label">Платежи</string>
+    <string name="catalog_label">Каталог</string>
+    <string name="currency"> руб.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
