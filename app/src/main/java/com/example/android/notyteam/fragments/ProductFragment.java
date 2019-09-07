@@ -41,57 +41,33 @@ public class ProductFragment extends Fragment {
     DetailsTabAdapter detailsAdapter;
 
     private int productId;
-
-    public ProductFragment() {
-        // Required empty public constructor
-    }
-
+    private Product product;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product, container, false);
-        if (getArguments() != null)
+        if (getArguments() != null) {
+            product =(Product) getArguments().getSerializable("product");
             productId = getArguments().getInt("productId");
+        }
         productImage = view.findViewById(R.id.product_image);
         productPrice = view.findViewById(R.id.product_price_tv);
-        productName =view.findViewById(R.id.product_name_tv);
-        imagePager =view.findViewById(R.id.pager);
+        productName = view.findViewById(R.id.product_name_tv);
+        imagePager = view.findViewById(R.id.pager);
         detailsPager = view.findViewById(R.id.details_pager);
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
 
-                networkCall();
+        imagesPagerAdapter = new ImagesPagerAdapter(getFragmentManager(), product);
+        imagePager.setAdapter(imagesPagerAdapter);
+        detailsAdapter = new DetailsTabAdapter(getFragmentManager(), product);
+        detailsPager.setAdapter(detailsAdapter);
+
+        setUpUi();
         return view;
     }
 
-    private void networkCall() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(WebApi.SERVER_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        WebApi webApi = retrofit.create(WebApi.class);
-        Call<SingleProductData> productCall = webApi.getGoodsById(productId);
-        productCall.enqueue(new Callback<SingleProductData>() {
-            @Override
-            public void onResponse(Call<SingleProductData> call, Response<SingleProductData> response) {
-                Product product = response.body().getData();
-                setUpUi(product);
-            }
-
-            @Override
-            public void onFailure(Call<SingleProductData> call, Throwable t) {
-
-            }
-        });
-    }
-
-    private void setUpUi(Product product) {
-        imagesPagerAdapter = new ImagesPagerAdapter(getFragmentManager(),product);
-        imagePager.setAdapter(imagesPagerAdapter);
-        detailsAdapter = new DetailsTabAdapter(getFragmentManager(),product);
-        detailsPager.setAdapter(detailsAdapter);
-        productPrice.setText(Integer.toString(product.getPrice())+" руб.");
+    private void setUpUi() {
+        productPrice.setText(Integer.toString(product.getPrice()) + " руб.");
         productName.setText(product.getName());
     }
 

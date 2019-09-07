@@ -37,13 +37,13 @@ public class Product implements Serializable {
         return productDetails;
     }
 
-    static private class ProductDetails{
+    static public class ProductDetails implements Serializable{
         @SerializedName("Вес")
-        private String package_weigth;
+        private String weigth;
         @SerializedName("Ширина упаковки")
         private String package_width;
         @SerializedName("Высота упаковки")
-        private String package_higth;
+        private String package_height;
         @SerializedName("Глубина упаковки")
         private String package_depth;
         @SerializedName("crossborder")
@@ -54,5 +54,37 @@ public class Product implements Serializable {
         private String color;
         @SerializedName("ebsmstock")
         private String ebsmstock;
+
+        public String getWeigth() {
+            return weigth;
+        }
+
+        public String getPackage_width() {
+            return package_width;
+        }
+
+        public String getPackage_height() {
+            return package_height;
+        }
+
+        public String getPackage_depth() {
+            return package_depth;
+        }
+
+        public String getCrossborder() {
+            return crossborder;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public String getEbsmstock() {
+            return ebsmstock;
+        }
     }
 }
