@@ -22,11 +22,15 @@ public interface WebApi {
             "X-Locale: \"ru\""
     }
     )
-
     @GET("catalog/categories")
     Call<CatalogData> getCategoriesList();
 
-
+    @Headers({
+            "X-Auth-Id: 1",
+            "X-Session-Id: 922803673",
+            "X-Locale: \"ru\""
+    }
+    )
     @GET("catalog/categories/{category_id}")
     Call<SubCatalogData> getCategoriesListById(@Path("category_id") int categoryId);
 
@@ -36,7 +40,6 @@ public interface WebApi {
             "X-Locale: \"ru\""
     }
     )
-
     @GET("catalog/categories/{category_id}/products?page=1&per_page=500")
     Call<ProductsData> getCategoriesListByIdPagePerPage(@Path("category_id") int categoryId);
 

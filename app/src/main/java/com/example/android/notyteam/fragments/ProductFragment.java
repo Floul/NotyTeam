@@ -4,6 +4,7 @@ package com.example.android.notyteam.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.notyteam.utils.DownloadImageTask;
+import com.example.android.notyteam.adapters.ImagesPagerAdapter;
 import com.example.android.notyteam.parsingdata.Product;
 import com.example.android.notyteam.R;
 import com.example.android.notyteam.parsingdata.SingleProductData;
 import com.example.android.notyteam.api.WebApi;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +34,9 @@ public class ProductFragment extends Fragment {
 
     ImageView productImage;
     TextView productPrice;
-    TextView productDescription;
+    TextView productName;
+    ViewPager pager;
+    ImagesPagerAdapter imagesPagerAdapter;
 
     private int productId;
 
@@ -49,7 +53,8 @@ public class ProductFragment extends Fragment {
             productId = getArguments().getInt("productId");
         productImage = view.findViewById(R.id.product_image);
         productPrice = view.findViewById(R.id.product_price_tv);
-        productDescription =view.findViewById(R.id.product_description_tv);
+        productName =view.findViewById(R.id.product_name_tv);
+        pager=view.findViewById(R.id.pager);
                 networkCall();
         return view;
     }
@@ -67,7 +72,6 @@ public class ProductFragment extends Fragment {
             public void onResponse(Call<SingleProductData> call, Response<SingleProductData> response) {
                 Product product = response.body().getData();
                 setUpUi(product);
-                Log.v("asdf", "asdf");
             }
 
             @Override
@@ -78,9 +82,10 @@ public class ProductFragment extends Fragment {
     }
 
     private void setUpUi(Product product) {
-        productPrice.setText(Integer.toString(product.getPrice()));
-        productDescription.setText(product.getDescription());
-        new DownloadImageTask(productImage).execute(product.getImages().get(0));
+        imagesPagerAdapter = new ImagesPagerAdapter(getFragmentManager(),product);
+        pager.setAdapter(imagesPagerAdapter);
+        productPrice.setText(Integer.toString(product.getPrice())+" руб.");
+        productName.setText(product.getName());
     }
 
 }

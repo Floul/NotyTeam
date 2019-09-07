@@ -10,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android.notyteam.utils.DownloadImageTask;
 import com.example.android.notyteam.parsingdata.Product;
 import com.example.android.notyteam.R;
 import com.example.android.notyteam.fragments.ProductsGridFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,9 @@ public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerVi
     private List<Product> mData = new ArrayList<Product>();
     private ProductsGridFragment.OnGridFragmentInteractionListener mListener;
 
-    public GridRecyclerViewAdapter (ProductsGridFragment.OnGridFragmentInteractionListener listener){
-        mListener =listener;
+    public GridRecyclerViewAdapter(Context context, ProductsGridFragment.OnGridFragmentInteractionListener listener) {
+        mListener = listener;
+        mContext = context;
     }
 
     @NonNull
@@ -37,11 +38,10 @@ public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull final CardViewHolder holder, int position) {
-        holder.mItem=mData.get(position);
+        holder.mItem = mData.get(position);
         holder.productName_tv.setText(mData.get(position).getName());
-        holder.productPrice_tv.setText(Integer.toString(mData.get(position).getPrice())+" руб");
-        new DownloadImageTask(holder.product_thumbNail)
-                .execute(mData.get(position).getImages().get(0));
+        holder.productPrice_tv.setText(Integer.toString(mData.get(position).getPrice()) + " руб");
+        Picasso.with(mContext).load(holder.mItem.getImages().get(0)).into(holder.product_thumbNail);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerVi
         return mData.size();
     }
 
-    public void setData (List<Product> newData){
+    public void setData(List<Product> newData) {
         mData.clear();
         mData.addAll(newData);
         notifyDataSetChanged();

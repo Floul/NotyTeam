@@ -76,7 +76,7 @@ public class CatalogFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-            mListener = (OnListFragmentInteractionListener) context;
+        mListener = (OnListFragmentInteractionListener) context;
 
     }
 
@@ -119,9 +119,10 @@ public class CatalogFragment extends Fragment {
 
                 @Override
                 public void onResponse(Call<SubCatalogData> call, Response<SubCatalogData> response) {
-                    List<Category> subCategories = response.body().getData().getSubCategories();
-                    listAdapter.setData(subCategories);
-
+                    if (response.code() == 200 && response.body() != null) {
+                        List<Category> subCategories = response.body().getData().getSubCategories();
+                        listAdapter.setData(subCategories);
+                    }
                 }
 
                 @Override

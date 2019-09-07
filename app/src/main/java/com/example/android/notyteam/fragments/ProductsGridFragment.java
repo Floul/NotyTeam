@@ -40,7 +40,7 @@ public class ProductsGridFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_products_grid, container, false);
         if (getArguments() != null)
             productId = getArguments().getInt("clickedItemId");
-        gridAdapter = new GridRecyclerViewAdapter(mListener);
+        gridAdapter = new GridRecyclerViewAdapter(getContext(),mListener);
         grid_rv = view.findViewById(R.id.grid_recycler_view);
         grid_rv.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
         grid_rv.setAdapter(gridAdapter);
