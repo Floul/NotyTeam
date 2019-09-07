@@ -1,74 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".fragments.ProductFragment">
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <androidx.viewpager.widget.ViewPager
-            android:layout_weight="0"
-            android:id="@+id/pager"
-            android:layout_margin="0dp"
-            android:padding="48dp"
-            android:layout_width="wrap_content"
-            android:layout_height="600dp" />
+        android:fillViewport="true"
+        tools:context=".fragments.ProductFragment">
+
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/product_price_tv"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.viewpager.widget.ViewPager
+                    android:layout_weight="0"
+                    android:id="@+id/pager"
+                    android:layout_margin="0dp"
+                    android:padding="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="600dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginLeft="48dp"
+                    android:background="@color/cardview_shadow_start_color"
+                    android:id="@+id/page_count"
+                    android:text="PAGES"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Price"
-                android:textSize="18sp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/product_name_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="8dp"
-                android:text="Name" />
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/details_pager"
-                android:layout_width="match_parent"
-                android:layout_height="500dp">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab_layout"
+                <TextView
+                    android:id="@+id/product_price_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textSize="18sp" />
 
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Описание" />
+                <TextView
+                    android:id="@+id/product_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Name" />
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/details_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp">
 
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Харктеристики" />
-                </com.google.android.material.tabs.TabLayout>
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Описание" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Харктеристики" />
+                    </com.google.android.material.tabs.TabLayout>
 
 
-            </androidx.viewpager.widget.ViewPager>
+                </androidx.viewpager.widget.ViewPager>
 
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+
 </LinearLayout>
