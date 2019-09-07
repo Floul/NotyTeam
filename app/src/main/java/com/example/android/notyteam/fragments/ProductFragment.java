@@ -6,19 +6,19 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.android.notyteam.adapters.DetailsTabAdapter;
 import com.example.android.notyteam.adapters.ImagesPagerAdapter;
 import com.example.android.notyteam.parsingdata.Product;
 import com.example.android.notyteam.R;
 import com.example.android.notyteam.parsingdata.SingleProductData;
 import com.example.android.notyteam.api.WebApi;
-import com.squareup.picasso.Picasso;
+import com.google.android.material.tabs.TabLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,8 +35,10 @@ public class ProductFragment extends Fragment {
     ImageView productImage;
     TextView productPrice;
     TextView productName;
-    ViewPager pager;
+    ViewPager imagePager;
     ImagesPagerAdapter imagesPagerAdapter;
+    ViewPager detailsPager;
+    DetailsTabAdapter detailsAdapter;
 
     private int productId;
 
@@ -54,7 +56,10 @@ public class ProductFragment extends Fragment {
         productImage = view.findViewById(R.id.product_image);
         productPrice = view.findViewById(R.id.product_price_tv);
         productName =view.findViewById(R.id.product_name_tv);
-        pager=view.findViewById(R.id.pager);
+        imagePager =view.findViewById(R.id.pager);
+        detailsPager = view.findViewById(R.id.details_pager);
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+
                 networkCall();
         return view;
     }
@@ -83,7 +88,9 @@ public class ProductFragment extends Fragment {
 
     private void setUpUi(Product product) {
         imagesPagerAdapter = new ImagesPagerAdapter(getFragmentManager(),product);
-        pager.setAdapter(imagesPagerAdapter);
+        imagePager.setAdapter(imagesPagerAdapter);
+        detailsAdapter = new DetailsTabAdapter(getFragmentManager(),product);
+        detailsPager.setAdapter(detailsAdapter);
         productPrice.setText(Integer.toString(product.getPrice())+" руб.");
         productName.setText(product.getName());
     }
