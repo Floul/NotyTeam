@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements CatalogFragment.O
 
         bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-
+        //TODO: REMOVE ME!
+        test();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -75,6 +76,18 @@ public class MainActivity extends AppCompatActivity implements CatalogFragment.O
     public void onGridFragmentInteraction(Product item) {
         Bundle args = new Bundle();
         args.putInt("productId",item.getId());
+        ProductFragment productFragment = new ProductFragment();
+        productFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_host_fragment, productFragment)
+                .addToBackStack(null)
+                .commit();
+        bottomNavigationView.setVisibility(BottomNavigationView.INVISIBLE);
+    }
+
+    private void test (){
+        Bundle args = new Bundle();
+        args.putInt("productId",360347);
         ProductFragment productFragment = new ProductFragment();
         productFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction()

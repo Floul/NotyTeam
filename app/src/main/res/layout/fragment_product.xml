@@ -11,10 +11,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <androidx.viewpager.widget.ViewPager
-            android:layout_gravity="h"
+            android:background="@color/cardview_dark_background"
             android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_margin="0dp"
+            android:padding="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="600dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,9 +37,12 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Name" />
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/details_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
-
     </LinearLayout>
 
 </ScrollView>
